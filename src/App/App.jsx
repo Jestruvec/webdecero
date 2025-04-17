@@ -1,13 +1,32 @@
-import React from 'react';
-import './App.css';
-import Login from './Views/Login/Login';
-
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import "./App.css";
+import { ProtectedRoute, AuthRoute } from "../Components";
+import { Login, Profile, NotFound } from "./Views";
 
 function App() {
   return (
-    <div className="App">
-      <Login />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route element={<AuthRoute />}>
+            <Route path="/login" element={<Login />} />
+          </Route>
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

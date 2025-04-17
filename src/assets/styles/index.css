@@ -1,0 +1,17 @@
+@import "./typography.css";
+@import "./variables.css";
+@import "./components.css";
+@import "./utilities.css";
+
+body {
+  display: flex;
+  margin: 0;
+  background-color: var(--primary-color);
+  font-family: "Quicksand", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+}
