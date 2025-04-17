@@ -1,7 +1,7 @@
 import { useUser } from "../../lib/hooks";
 import { LoadingMessage } from "../atoms/LoadingMessage";
 import { UserAvatar } from "../atoms/UserAvatar";
-import Location_dot from "../../assets/svg/location.svg";
+import map_marker_outline from "../../assets/svg/map-marker-outline.svg";
 import { ErrorMessage } from "../atoms/ErrorMessage";
 
 /**
@@ -38,7 +38,11 @@ export const UserCard = () => {
           <p className="user-email">{user.email}</p>
 
           <div className="location-info">
-            <img src={Location_dot} alt="Icono de ubicacion" className="icon" />
+            <img
+              src={map_marker_outline}
+              alt="Icono de ubicacion"
+              className="icon"
+            />
             <p>{`${user.address.city} - ${user.address.country}`}</p>
           </div>
         </section>
