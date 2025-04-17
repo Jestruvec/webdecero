@@ -2,6 +2,10 @@ import { useState } from "react";
 import { storageService } from "../services/storageService";
 
 export const useAuthActions = () => {
+  const [authData, setAuthData] = useState(() => {
+    const stored = storageService.getItem("authData");
+    return stored ? stored : null;
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -23,6 +27,7 @@ export const useAuthActions = () => {
 
       const data = await response.json();
       storageService.setItem("authData", data);
+      setAuthData(data);
       return data;
     } catch (error) {
       setError(error.message);
@@ -35,5 +40,5 @@ export const useAuthActions = () => {
     storageService.removeItem("authData");
   };
 
-  return { login, logout, loading, error };
+  return { authData, login, logout, loading, error };
 };

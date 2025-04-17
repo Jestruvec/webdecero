@@ -1,6 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useUser } from "../../lib/hooks";
-import { LoadingMessage } from "../atoms/LoadingMessage";
+import { useAuthActions } from "../../lib/hooks";
 
 /**
  * AuthRoute component
@@ -12,8 +11,7 @@ import { LoadingMessage } from "../atoms/LoadingMessage";
  */
 
 export const AuthRoute = () => {
-  const { user, loading } = useUser();
+  const { authData } = useAuthActions();
 
-  if (loading) return <LoadingMessage />;
-  return user ? <Navigate to="/profile" replace /> : <Outlet />;
+  return authData ? <Navigate to="/profile" replace /> : <Outlet />;
 };

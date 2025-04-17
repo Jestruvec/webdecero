@@ -1,6 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useUser } from "../../lib/hooks/useUser";
-import { LoadingMessage } from "../atoms/LoadingMessage";
+import { useAuthActions } from "../../lib/hooks";
 
 /**
  * ProtectedRoute component
@@ -15,10 +14,9 @@ import { LoadingMessage } from "../atoms/LoadingMessage";
  */
 
 export const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useUser();
+  const { authData } = useAuthActions();
 
-  if (loading) return <LoadingMessage />;
-  if (!user) return <Navigate to="/login" replace />;
+  if (!authData) return <Navigate to="/login" replace />;
 
   return children;
 };
